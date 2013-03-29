@@ -46,7 +46,9 @@ function displayTweets(r) {
 			$(clone).appendTo($(".container")).show();
 			$('#container').gridalicious('append',$(clone).removeClass("hidden"));
 		});
-		$(".loadmore button").fadeIn();
+		if(nextUrl !== undefined) {
+			$(".loadmore button").fadeIn();
+		}
 	}
 }
 
