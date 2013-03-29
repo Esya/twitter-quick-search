@@ -70,6 +70,17 @@ body {
 	background: #fff;
 }
 
+#container .item .tweet_img {
+	margin-bottom: 7px;
+}
+
+#container .item .profile_picture {
+	width: 48px;
+	height: 48px;
+	float: left;
+	margin: 0px 5px 2px 0px;
+}
+
 #container .item a {
 	text-decoration: none;
 	color: #03a8e5;

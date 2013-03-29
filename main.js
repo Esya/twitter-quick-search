@@ -30,6 +30,13 @@ function displayTweets(r) {
 			tweet.text = tweet.text.replace(/\B@([\w-]+)/gm, '<a href="http://twitter.com/$1" target="_blank">@$1</a>');
 			tweet.text = tweet.text.replace(/\B#([\w-]+)/gm, '<a href="https://twitter.com/search?q=%23$1" target="_blank">#$1</a>');
 
+			if (tweet.entities['media'] !== undefined) {
+				$(clone).find('.tweet_img').attr('src',tweet.entities['media'][0].media_url);
+			} else {
+				$(clone).find('.tweet_img').remove();
+			}
+
+			$(clone).find('.profile_picture').css('background-image','url('+tweet.profile_image_url+')');
 			$(clone).find('.tweet').html(tweet.text);
 			$(clone).find('.time').html(timeAgo(tweet.created_at));
 
@@ -55,7 +62,7 @@ function searchTweets(query) {
 	});
 
 	$.ajax({
-		url: "http://search.twitter.com/search.json?q="+query,
+		url: "http://search.twitter.com/search.json?include_entities=1&q="+query,
 		dataType: "jsonp",
 		jsonpCallback: "displayTweets"
 	});
